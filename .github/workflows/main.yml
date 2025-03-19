@@ -15,13 +15,13 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Unity License
       uses: game-ci/unity-request-activation-file@v2
       with:
         unityVersion: 2022.3.11f1  # Укажите вашу версию Unity
-        projectPath: .             # Путь к вашему проекту
+        projectPath: .             # Путь к вашему проекту (текущая директория)
 
     - name: Cache Unity Library
       uses: actions/cache@v3
@@ -35,13 +35,13 @@ jobs:
       uses: game-ci/unity-builder@v2
       with:
         targetPlatform: WebGL
-        projectPath: .             # Путь к вашему проекту
+        projectPath: .             # Путь к вашему проекту (текущая директория)
         buildName: WebGLBuild
         buildsPath: Build          # Папка для сборки
         unityVersion: 2022.3.11f1  # Укажите вашу версию Unity
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4  # Используем актуальную версию v4
       with:
         name: WebGLBuild
         path: Build/WebGLBuild    # Путь к собранному проекту
